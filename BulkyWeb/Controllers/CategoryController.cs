@@ -54,6 +54,7 @@ namespace BulkyWeb.Controllers
 
             }
 
+            return View();
             //if in different controller do this
             // return RedirectToAction("Index", "differentController");
         }
