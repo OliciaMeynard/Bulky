@@ -1,4 +1,6 @@
 ﻿@model Category
+
+
 <form method="post">
     <div class="border p-3 mt-4">
         <div class="rpw pb-2">
@@ -21,7 +23,7 @@
 
         <div class="row">
             <div class="col-6 col-md-3">
-                <button type="submit" class="btn btn-primary form-control" >Create</button>
+                <button type="submit" class="btn btn-primary form-control">Create</button>
             </div>
             <div class="col-6 col-md-3">
                 <a asp-controller="Category" asp-action="Index" class="btn btn-secondary border form-control">Back to List</a>
@@ -30,10 +32,69 @@
 @*         <partial name="_ValidationScriptsPartial" /> *@
     </div>
 
+
+
 </form>
+@* <div class="row">
+    <div class="col-md-12">
+        <label>Category Name</label>
+       <input type="text" class="form-control" id="Names" />
+
+    </div>
+
+    <div class="col-md-12"> *@
+@*         <label>Display Order</label> *@
+       @* //@Html.TextboxFor(m => m.DisplayOrder); *@
+@*         <input type="text" class="form-control" id="DisplayOrders" />
+    </div>
+
+    <button onclick="SubmitData()">Submit</button>
+</div> *@
 
 @section Scripts{
     @{
-        <partial name="_ValidationScriptsPartial" />
+                <partial name="_ValidationScriptsPartial" />
     }
+
+@*     <script type="text/javascript">
+        function SubmitData(){
+            
+            //show loading..
+            var x = $("#Names").val();
+            var y = $("#DisplayOrders").val();
+            data = {
+                Name: $("#Names").val(),
+                DisplayOrder: $("#DisplayOrders").val()
+            }
+
+            $.ajax({
+                type: "POST",
+                data: data,
+                url: "@Url.Action("CreateCategory", "Category")",
+                dataType: "json",
+                beforeSend: function(){
+                    //show loading..
+                },
+                success: function (result) {
+                    debugger;
+                    console.log(result)
+                    const res = JSON.stringify(result)
+                    if (result === "Ok") {
+                        console.log(result);
+                        window.location.href = "@Url.Action("Index", "Category")";
+                       
+                    }
+                },
+                complete: function(){
+                    //hide loading..
+                },
+                error: function (req, status, error) {
+                    console.log(error)
+
+                }
+            });
+            //hide loading..
+        }
+    </script> *@
+
 }

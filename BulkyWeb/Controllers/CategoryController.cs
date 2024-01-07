@@ -184,5 +184,20 @@ namespace BulkyWeb.Controllers
         //    var theage = age;
         //    return new JsonResult(Ok(name));
         //}
+
+        //[HttpPost]
+        //public JsonResult CreateCategory(Category category)
+        //{
+        //    var newcat = category;
+        //    newcat.Name = category.Name;
+        //    newcat.DisplayOrder = (int)category.DisplayOrder;
+        //    if(category != null)
+        //    {
+        //        _db.Categories.Add(newcat);
+        //        _db.SaveChanges();
+        //        //return RedirectToAction(")
+        //    }
+        //    return Json("Ok");
+        //}
     }
 }
