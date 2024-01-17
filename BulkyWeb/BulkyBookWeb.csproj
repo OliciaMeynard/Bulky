@@ -22,8 +22,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Remove="Views\Category\Create.cshtml~RF439719.TMP" />
-    <None Remove="Views\Category\Create.cshtml~RF549c08.TMP" />
+    <None Remove="Areas\Admin\Views\Category\Create.cshtml~RF439719.TMP" />
+    <None Remove="Areas\Admin\Views\Category\Create.cshtml~RF549c08.TMP" />
+    <None Remove="Areas\Admin\Views\Product\Delete.cshtml~RF6892df.TMP" />
   </ItemGroup>
 
   <ItemGroup>
@@ -38,7 +39,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Bulky.DataAccess\Bulky.DataAccess.csproj" />
+    <ProjectReference Include="..\Bulky.DataAccess\BulkyBook.DataAccess.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace BulkyWeb.Controllers
+namespace BulkyBookWeb.Controllers
 {
     public class BlazeController : Controller
     {
