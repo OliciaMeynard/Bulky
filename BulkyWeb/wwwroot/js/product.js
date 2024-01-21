@@ -17,7 +17,15 @@ function loadDataTable() {
             {
                 data: 'imageUrl',
                 "render": function (data) {
-                    return `<img src="${data}" alt="@obj.Title" style="width: 50px;" />`
+
+                    if (data == "") {
+                        return `<img src="\\images\\placeholderimage.png" alt="image" style="width: 50px;" />`
+                    }
+                    else {
+                        return `<img src="${data}" alt="image" style="width: 50px;" />`
+                    }
+
+                   // return `<img src="${data}" alt="@obj.Title" style="width: 50px;" />`
                 },
                 "width": "20%"
             },

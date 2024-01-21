@@ -75,37 +75,55 @@ namespace BulkyBookWeb.Areas.Admin.Controllers
             {
                  ////wwwroot folder
                 string wwwRootpath = _webHostEnvironment.WebRootPath;
+
+
+
+                ////////FILE UPLOAD
                 if (file != null)
                 {
                     //string fileName = Guid.NewGuid().ToString() + file.FileName.ToString() + Path.GetExtension(file.FileName);
                     string fileName = Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);
                     string productPath = Path.Combine(wwwRootpath, @"images\product");
 
-                    if(!string.IsNullOrEmpty( productVM.Product.ImageUrl))
+                    if (!string.IsNullOrEmpty(productVM.Product.ImageUrl))
                     {
                         //delete the old image
                         var oldImagePath = Path.Combine(wwwRootpath, productVM.Product.ImageUrl.TrimStart('\\'));
-                        if(System.IO.File.Exists(oldImagePath))
+                        if (System.IO.File.Exists(oldImagePath))
                         {
                             System.IO.File.Delete(oldImagePath);
                         }
                     }
-
-
-
-
                     using (var fileStream = new FileStream(Path.Combine(productPath, fileName), FileMode.Create))
                     {
                         file.CopyTo(fileStream);
                     }
 
                     productVM.Product.ImageUrl = @"\images\product\" + fileName;
-
-                
                 }
+                ////////FILE UPLOAD
 
-              ///add
-              if(productVM.Product.Id == 0) {
+
+
+
+
+                ////if it is null
+                if (file == null)
+                {
+
+                    productVM.Product.ImageUrl = "";
+
+
+                }
+             ////if it is null
+
+
+
+
+
+
+                ///add
+                if (productVM.Product.Id == 0) {
                 
                      _unitOfWork.Product.Add(productVM.Product);
                 }
