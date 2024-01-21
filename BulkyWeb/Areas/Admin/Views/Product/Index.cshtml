@@ -23,18 +23,21 @@
 
 
 
-        <table class="table table-bordered table-striped">
+        <table id="tblData" class="table table-bordered table-striped" style="width: 100%;">
             <thead>
                 <tr>
+                    <th>Image</th>
                     <th>Title</th>
-                    <th>Author</th>
                     <th>ISBN</th>
                     <th>Price</th>
+                    <th>Author</th>
                     <th>Category</th>
+                    <th>Action</th>
                 </tr>
             </thead>
-            <tbody>
-                @foreach (var obj in Model)
+@*             <tbody> *@
+                <!--OLD CODE WITHOUT DATATABLE-->
+@*                 @foreach (var obj in Model)
                 {
 
                     <tr>
@@ -42,7 +45,8 @@
                         <td>@obj.Author</td>
                         <td>@obj.ISBN</td>
                         <td>@obj.Price</td>
-                        <td>@obj.CategoryId</td>
+                        <td>@obj.Category.Name</td>
+                        <td><img src="@obj.ImageUrl" alt="@obj.Title" style="width: 40px;" /></td>
 
                         <td>
                             <div class="w-75 btn-group" role="group">
@@ -55,8 +59,14 @@
                             </div>
                         </td>
                     </tr>
-                }
-            </tbody>
+                } *@
+                <!--OLD CODE WITHOUT DATATABLE-->
+
+@*             </tbody> *@
         </table>
     </div>
 </div>
+
+@section Scripts{
+    <script src="~/js/product.js"></script>
+}

@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using BulkyBook.DataAccess.Data;
 using BulkyBook.DataAccess.Repository.IRepository;
+using BulkyBook.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace BulkyBook.DataAccess.Repository
@@ -21,6 +22,10 @@ namespace BulkyBook.DataAccess.Repository
             _db = db; 
             this.dbSet = _db.Set<T>();
             //_db.Categories == dbSet
+
+            //this code also works, which means if you get products Table you also get Categories table
+            //_db.Products.Include(u => u.Category);
+            //_db.Products.Include(u => u.Category).Include(u => u.CategoryId);
         }
         public void Add(T entity)
         {
@@ -31,17 +36,49 @@ namespace BulkyBook.DataAccess.Repository
 
 
 
-        public T GetFirstOrDefault(Expression<Func<T, bool>> filter)
+        public T GetFirstOrDefault(Expression<Func<T, bool>> filter, string? includeProperties = null)
         {
             IQueryable<T> query = dbSet;
             query = query.Where(filter);
+            if (!string.IsNullOrEmpty(includeProperties))
+            {
+                foreach (var includeprop in includeProperties
+                    .Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
+                {
+                    query = query.Include(includeprop);
+                    ///just likde these 
+                    //_db.Products.Include(u => u.Category);
+                    //_db.Products.Include(u => u.Category).Include(u => u.CategoryId);
+                }
+            }
             return query.FirstOrDefault();
             //Category? categoryFromDb = _db.Categories.Where(cat => cat.Id == id).FirstOrDefault();
         }
 
-        public IEnumerable<T> GetAll()
+        ///
+        //public IEnumerable<T> GetAll()
+        //{
+        //    IQueryable<T> query = dbSet;
+        //    return query.ToList();
+        //}
+
+
+        //these is example
+        //Category, Covertype
+        public IEnumerable<T> GetAll(string? includeProperties = null)
         {
             IQueryable<T> query = dbSet;
+            if(!string.IsNullOrEmpty(includeProperties))
+            {
+                foreach(var includeprop in includeProperties
+                    .Split(new char[] {','}, StringSplitOptions.RemoveEmptyEntries))
+                {
+                    query = query.Include(includeprop);
+                    ///just likde these 
+                    //_db.Products.Include(u => u.Category);
+                    //_db.Products.Include(u => u.Category).Include(u => u.CategoryId);
+                }
+            }
             return query.ToList();
         }
 
