@@ -110,15 +110,15 @@ namespace BulkyBookWeb.Areas.Admin.Controllers
                 ////if it is null
                 if (file == null)
                 {
-
-                    productVM.Product.ImageUrl = "";
-
-
+                    if (string.IsNullOrEmpty(productVM.Product.ImageUrl)){
+                    
+                        productVM.Product.ImageUrl = "";
+                    }
                 }
-             ////if it is null
+                ////if it is null
 
 
-
+  
 
 
 
