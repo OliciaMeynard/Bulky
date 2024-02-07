@@ -17,9 +17,9 @@ namespace BulkyBook.DataAccess.Data
     //public class ApplicationDbContext : DbContext
     public class ApplicationDbContext : IdentityDbContext<IdentityUser>
     {
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base (options)
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {
-                    
+
         }
 
         ///create table "Categories will be the table name"
@@ -29,6 +29,13 @@ namespace BulkyBook.DataAccess.Data
         ///then run update-database again
         /// <summary>
         /// then run update-database again
+        /// 
+        public DbSet<ApplicationUser> ApplicationUsers { get; set;}
+
+
+        public DbSet<Company> Companies { get; set; }
+
+        public DbSet<ShoppingCart> ShoppingCarts { get; set; }
  
 
 

@@ -8,6 +8,7 @@ using BulkyBook.DataAccess.Data;
 using BulkyBook.DataAccess.Repository.IRepository;
 using BulkyBook.Models;
 using Microsoft.EntityFrameworkCore;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace BulkyBook.DataAccess.Repository
 {
@@ -36,9 +37,20 @@ namespace BulkyBook.DataAccess.Repository
 
 
 
-        public T GetFirstOrDefault(Expression<Func<T, bool>> filter, string? includeProperties = null)
+        public T GetFirstOrDefault(Expression<Func<T, bool>> filter, string? includeProperties = null, bool tracked = false)
         {
-            IQueryable<T> query = dbSet;
+            IQueryable<T> query;
+            if (tracked)
+            {
+                query = dbSet;
+            }
+            else
+            {
+                query = dbSet.AsNoTracking();
+
+
+            }
+
             query = query.Where(filter);
             if (!string.IsNullOrEmpty(includeProperties))
             {
@@ -52,6 +64,21 @@ namespace BulkyBook.DataAccess.Repository
                 }
             }
             return query.FirstOrDefault();
+            ////OLD CODE WITHOUT TRACKING
+            //IQueryable<T> query = dbSet;
+            //query = query.Where(filter);
+            //if (!string.IsNullOrEmpty(includeProperties))
+            //{
+            //    foreach (var includeprop in includeProperties
+            //        .Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
+            //    {
+            //        query = query.Include(includeprop);
+            //        ///just likde these 
+            //        //_db.Products.Include(u => u.Category);
+            //        //_db.Products.Include(u => u.Category).Include(u => u.CategoryId);
+            //    }
+            //}
+            //return query.FirstOrDefault();
             //Category? categoryFromDb = _db.Categories.Where(cat => cat.Id == id).FirstOrDefault();
         }
 
@@ -65,9 +92,14 @@ namespace BulkyBook.DataAccess.Repository
 
         //these is example
         //Category, Covertype
-        public IEnumerable<T> GetAll(string? includeProperties = null)
+        public IEnumerable<T> GetAll(Expression<Func<T, bool>>? filter, string? includeProperties = null)
         {
             IQueryable<T> query = dbSet;
+            if(filter != null)
+            {
+
+            query = query.Where(filter);
+            }
             if(!string.IsNullOrEmpty(includeProperties))
             {
                 foreach(var includeprop in includeProperties

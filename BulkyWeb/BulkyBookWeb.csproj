@@ -25,7 +25,10 @@
     <None Remove="Areas\Admin\Views\Category\Create.cshtml~RF439719.TMP" />
     <None Remove="Areas\Admin\Views\Category\Create.cshtml~RF549c08.TMP" />
     <None Remove="Areas\Admin\Views\Product\Delete.cshtml~RF6892df.TMP" />
+    <None Remove="Areas\Customer\Controllers\CartController.cs~RF5a93be.TMP" />
     <None Remove="Areas\Customer\Views\Home\Details.cshtml~RF5ecccc.TMP" />
+    <None Remove="Views\Shared\_Layout.cshtml~RF4cf1d0.TMP" />
+    <None Remove="Views\Shared\_LoginPartial.cshtml~RF4c40a1.TMP" />
   </ItemGroup>
 
   <ItemGroup>
@@ -48,7 +51,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Areas\Identity\Data\" />
     <Folder Include="wwwroot\images\product\" />
 	  
   </ItemGroup>
