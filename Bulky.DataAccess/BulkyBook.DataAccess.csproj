@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <None Remove="Repository\IRepository\ICompanyRepository.cs~RFf1ff2.TMP" />
+    <None Remove="Repository\IRepository\IOrderHeaderRepository.cs~RF67438c.TMP" />
     <None Remove="Repository\UnitOfWork.cs~RF59032b.TMP" />
   </ItemGroup>
 

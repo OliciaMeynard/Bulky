@@ -2,9 +2,11 @@
 using BulkyBook.DataAccess.Data;
 using BulkyBook.DataAccess.Repository.IRepository;
 using BulkyBook.Models;
+using BulkyBook.Models.ViewModels;
 using BulkyBook.Utility;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.Blazor;
 
 namespace BulkyBookWeb.Areas.Admin.Controllers
 {
@@ -24,7 +26,7 @@ namespace BulkyBookWeb.Areas.Admin.Controllers
         }
 
         ///this is action method
-        public IActionResult Index()
+        public IActionResult Index(List<Category>? objCategoryListt)
         {
             //var objCategoryList = _db.Categories.ToList();
             //or use this
@@ -32,6 +34,25 @@ namespace BulkyBookWeb.Areas.Admin.Controllers
             List<Category> objCategoryList = _unitOfWork.Category.GetAll().ToList();
             return View(objCategoryList);
         }
+
+        /// SEARCH
+        [HttpPost]
+        public IActionResult Search(string searchString)
+        {
+            List<Category> objCategoryListt = _unitOfWork.Category.GetAll().ToList();
+            if (!string.IsNullOrEmpty(searchString)) {
+                var filteredResult = objCategoryListt.Where(n => n.Name.Contains(searchString, StringComparison.OrdinalIgnoreCase)).ToList();
+                //var filteredResult = objCategoryList.Where(n => n.Name.Contains(searchString) || n.any.contains(searchString));
+                return View("Index", filteredResult);
+            }
+            else
+            {
+            return View("Index", objCategoryListt);
+
+            }
+        }
+
+        /// SEARCH
 
 
         //[Authorize(Roles = SD.Role_Admin)]

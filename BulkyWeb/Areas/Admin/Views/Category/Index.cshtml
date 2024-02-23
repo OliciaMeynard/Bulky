@@ -12,6 +12,17 @@
     <div class="card-body p-4">
         <div class="row pb-3">
             <div class="col-6">
+                <!----ADDDDDD---->
+                            <div class="col-6">
+                            </div>
+                                <form class="col-6 text-end"  method="post">
+                                <input name="searchString" type="text" >
+
+                                </input>
+                                 <button asp-action="Search" asp-controller="Category" class="btn btn-primary">Search</button>
+
+                            </form>
+                <!----ADDDDDD------>
             </div>
             <div class="col-6 text-end">
                 <a asp-controller="Category" asp-action="Create" class="btn btn-primary">
