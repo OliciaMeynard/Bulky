@@ -38,9 +38,29 @@ builder.Services.ConfigureApplicationCookie(opt =>
 }
 );
 
+///FACEBOOK
+builder.Services.AddAuthentication().AddFacebook(opt =>
+{
+    opt.AppId = "2701098113378841";
+    opt.AppSecret = "5c0a368436ce118a859579a93b649453";
+});
+///FACEBOOK
+///
+
 
 ///creating DB the run on tools Nuget Package mngr console command "update-database"
 ///
+
+///SESSION
+builder.Services.AddDistributedMemoryCache();
+builder.Services.AddSession(options =>
+{
+    options.IdleTimeout = TimeSpan.FromMinutes(100);
+    options.Cookie.HttpOnly = true;
+    options.Cookie.IsEssential = true;
+});
+///SESSION
+
 
 /////this service is added to also use RAZOR PAGES on MVC
 builder.Services.AddRazorPages();
@@ -67,7 +87,7 @@ StripeConfiguration.ApiKey = builder.Configuration.GetSection("Stripe:SecretKey"
 app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
-
+app.UseSession();
 ///ADD RAZOR PAGES
 app.MapRazorPages();
 
