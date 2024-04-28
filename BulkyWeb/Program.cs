@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Identity;
 using BulkyBook.Utility;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Stripe;
+using BulkyBook.DataAccess.DbInitializer;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -61,6 +62,10 @@ builder.Services.AddSession(options =>
 });
 ///SESSION
 
+//////Db Initializer for deployment
+builder.Services.AddScoped<IDbInitializer, DbInitializer>();
+//////Db Initializer for deployment
+
 
 /////this service is added to also use RAZOR PAGES on MVC
 builder.Services.AddRazorPages();
@@ -88,6 +93,11 @@ app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
 app.UseSession();
+
+///Db Initializer for deployment
+SeedDatabase();
+///Db Initializer for deployment
+
 ///ADD RAZOR PAGES
 app.MapRazorPages();
 
@@ -96,3 +106,12 @@ app.MapControllerRoute(
     pattern: "{area=Customer}/{controller=Home}/{action=Index}/{id?}");
 
 app.Run();
+
+void SeedDatabase()
+{
+    using(var scope = app.Services.CreateScope())
+    {
+        var dbInitializer = scope.ServiceProvider.GetRequiredService<IDbInitializer>();
+        dbInitializer.Initialize();
+    }
+}
