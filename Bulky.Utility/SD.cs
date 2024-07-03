@@ -30,5 +30,7 @@ namespace BulkyBook.Utility
         public const string SessionCart = "SessionShoppingCart";
         public const string SessionNameOfUser = "SessionNameOfUser";
         public const string SessionUserCity = "";
+
+
     }
 }

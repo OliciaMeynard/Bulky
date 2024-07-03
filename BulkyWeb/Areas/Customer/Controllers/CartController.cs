@@ -117,6 +117,7 @@ namespace BulkyBookWeb.Areas.Customer.Controllers
                 //it is a company user
                 ShoppingCartVM.OrderHeader.PaymentStatus = SD.PaymentStatusDelayedPayment;
                 ShoppingCartVM.OrderHeader.OrderStatus = SD.StatusApproved;
+                HttpContext.Session.SetInt32(SD.SessionCart, 0);
             }
 
             _unitOfWork.OrderHeader.Add(ShoppingCartVM.OrderHeader);

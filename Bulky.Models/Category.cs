@@ -20,5 +20,7 @@ namespace BulkyBook.Models
         [DisplayName("Display Order")]
         [Range(1, 100, ErrorMessage = "Must be between 1-100")]
         public int DisplayOrder { get; set; }
+
+
     }
 }

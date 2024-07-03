@@ -24,7 +24,8 @@ namespace BulkyBookWeb.ViewComponents
             {
                 if (sessioncart == null)
                 {
-                    HttpContext.Session.SetInt32(SD.SessionCart, _unitOfWork.ShoppingCart.GetAll(u => u.ApplicationUserId == claim.Value).Count());
+                    HttpContext.Session.SetInt32(SD.SessionCart,
+                    _unitOfWork.ShoppingCart.GetAll(u => u.ApplicationUserId == claim.Value).Count());
                     
                 }
           

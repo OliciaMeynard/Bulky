@@ -28,16 +28,19 @@
 
 
                 </div>
-                    
+                    <!--OTHER WORKING CODE C#--->
                 @{
                     var companyVisible = "display:none;";
                 }
                 @if(Model.ApplicationUser.Role == SD.Role_Company ){
                     companyVisible = "display:block;";
                 }
+                <!--OTHER WORKING CODE C#--->
                     
                 <div class="form-floating py-2 col-12">
-                    <select id="selectCompany" asp-for="ApplicationUser.CompanyId" style="@companyVisible" asp-items="@Model.CompanyList" class="form-select">
+                    <!--OTHER WORKING CODE C#--->
+@*                     <select id="selectCompany" asp-for="ApplicationUser.CompanyId" style="@companyVisible" asp-items="@Model.CompanyList" class="form-select"> *@
+                    <select id="selectCompany" asp-for="ApplicationUser.CompanyId" style="" asp-items="@Model.CompanyList" class="form-select">
                     </select>
                 </div>
                 
@@ -62,14 +65,26 @@
 
 @section Scripts {
     @{
-        <partial name="_ValidationScriptsPartial" />
+                        <partial name="_ValidationScriptsPartial" />
 
     }
         <script>
             const selectCompany = document.getElementById("selectCompany");
             const selectRole = document.getElementById("selectRole")
+
+
+            const checkIfCompany = () => {
+                if (selectRole.value != "Company") {
+                    selectCompany.style.display = "none";
+                }
+                else{
+                selectCompany.style.display = "block";
+                }
+            console.log(selectRole.value)
+            }
+
             selectRole.onchange = (e) => {
-                selected = e.target.value;
+                let selected = e.target.value;
                 if (selected == "Company") {
                     selectCompany.style.display = "block";
                 }
@@ -79,6 +94,7 @@
 
                 console.log(selectRole.value)
             }
+        checkIfCompany()
 
 
 

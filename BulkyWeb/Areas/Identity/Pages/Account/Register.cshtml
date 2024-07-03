@@ -147,7 +147,7 @@
         const selectCompany = document.getElementById("selectCompany");
             const selectRole = document.getElementById("selectRole")
             selectRole.onchange = (e) => {
-                selected = e.target.value;
+                let selected = e.target.value;
                 if (selected == "Company") {
                     selectCompany.style.display = "block";
                 }

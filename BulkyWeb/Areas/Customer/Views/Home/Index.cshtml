@@ -7,7 +7,7 @@
             <div class="row p-2">
                 <div class="col-12 p-1">
                     <div class="card border-0 p-3 shadow border-top border-5 rounded">
-                        <img src="@product.ImageUrl" alt="@product.Title" class="card-img-top rounded" style="display: block; height: 350px; width: 270px; object-fit: cover;"/>
+                        <img src="@product.ImageUrl" alt="@product.Title" class="card-img-top rounded" style="display: block; height: 350px; width: 270px; object-fit: cover;" />
                         <div class="card-body pb-0">
                             <div class="pl-1">
                                 <p class="card-title h5 text-dark opacity-75  text-uppercase text-center">@product.Title</p>
@@ -16,24 +16,27 @@
                             <div class="pl-1">
                                 <p class="text-dark text-opacity-75  text-center mb-0">
                                     List Price:
-                                        <span class="text-decoration-line-through">
+                                    <span class="text-decoration-line-through">
                                         @product.ListPrice.ToString("c")
-                                        </span>
-                                 </p>
+                                    </span>
+                                </p>
                             </div>
                             <div class="pl-1">
-                                <p class="text-dark text-opacity-75  text-center">As low as:
-                                    <span> @product.Price100.ToString("c")
+                                <p class="text-dark text-opacity-75  text-center">
+                                    As low as:
+                                    <span>
+                                        @product.Price100.ToString("c")
                                     </span>
                                 </p>
                             </div>
 
+
                         </div>
-                       <div>
+                        <div>
                             <a asp-controller="Home" asp-route-Id="@product.Id" asp-action="Details" class="btn btn-primary bg-gradient border-0 form-control">
-                               Details
-                           </a>
-                       </div>
+                                Details
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>

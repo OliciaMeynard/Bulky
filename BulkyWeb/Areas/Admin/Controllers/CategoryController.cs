@@ -11,7 +11,8 @@ using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.Blazor;
 namespace BulkyBookWeb.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    [Authorize(Roles = SD.Role_Admin)]
+    //[Authorize(Roles = SD.Role_Admin)]
+    [Authorize(Roles = $"{SD.Role_Employee},{SD.Role_Admin}")]
     public class CategoryController : Controller
     {
         //private readonly ICategoryRepository _categoryRepo;
@@ -34,6 +35,8 @@ namespace BulkyBookWeb.Areas.Admin.Controllers
             List<Category> objCategoryList = _unitOfWork.Category.GetAll().ToList();
             return View(objCategoryList);
         }
+
+
 
         /// SEARCH
         [HttpPost]
@@ -66,10 +69,11 @@ namespace BulkyBookWeb.Areas.Admin.Controllers
         public IActionResult Create(Category categoryObj)
         {
             ////this is for custom validation
-            if (categoryObj.Name != null && categoryObj.Name.ToLower() == "test")
+            if (categoryObj.Name != null && categoryObj.Name.ToLower() == "testtingnga")
             {
                 //ModelState.AddModelError("Name", "Hindi pwede ang test");
-                ModelState.AddModelError("", "Hindi pwede ang test");
+                ModelState.AddModelError("Name", "Hindi pwede ang testtingnga");
+                //ModelState.AddModelError("", "Hindi pwede ang testtingnga");
             }
 
             //if (categoryObj.Name.ToLower() == null && categoryObj.DisplayOrder.ToString() == null)

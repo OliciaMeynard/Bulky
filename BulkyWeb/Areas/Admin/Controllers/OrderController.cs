@@ -136,7 +136,7 @@ namespace BulkyBookWeb.Areas.Admin.Controllers
 
         [ActionName("Details")]
         [HttpPost]
-        [Authorize(Roles = SD.Role_Admin + "," + SD.Role_Employee)]
+        [Authorize(Roles = SD.Role_Admin + "," + SD.Role_Employee + "," + SD.Role_Company)]
         public IActionResult Details_PAY_NOW()
         {
             OrderVM.OrderHeader = _unitOfWork.OrderHeader.GetFirstOrDefault( u => u.Id == OrderVM.OrderHeader.Id, includeProperties: "ApplicationUser" );
@@ -203,6 +203,7 @@ namespace BulkyBookWeb.Areas.Admin.Controllers
                     _unitOfWork.Save();
 
                 }
+
             }
 
 
